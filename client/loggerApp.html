@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+  	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+
+    
+  </head>
+
+ <body>
+   <div class="container well">
+   <ul class="list-group"  data-bind="foreach: logMessages" >
+  <li class="list-group-item">
+  	 <span data-bind="text: $data.message"> </span>
+  </li>
+ 
+</ul>
+
+
+</div>
+
+   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"> </script>
+   <script type="text/javascript" src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+   <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js"></script>
+     
+   <script type="text/javascript" >
+    var host,socket, viewModel;
+    host = window.location.protocol + '//' +  window.location.host;
+    socket = io.connect(host + '/realTimeLogger');
+  
+    socket.on('connect',function (){
+      console.log('Connection Established !');
+    })
+
+    socket.on('loggerMessage',function (messages){
+      viewModel.logMessages(JSON.parse(messages));
+    });
+
+    viewModel = {
+      logMessages : ko.observableArray([]),
+      logBinary : ko.observable()
+    }
+
+    ko.applyBindings(viewModel);
+    </script>
+
+ </body>
+
+</html>

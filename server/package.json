@@ -1,0 +1,21 @@
+{
+  "name": "socketLogger",
+  "version": "1.0.0",
+  "description": "real time log messages",
+  "main": "logServer.js",
+  "dependencies": {
+    "socket.io": "^1.3.6",
+     "express": "4.8.5",
+     "bson"  : "0.4.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/madhuredweb/socketLogger.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
